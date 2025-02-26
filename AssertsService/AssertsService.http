@@ -1,0 +1,6 @@
+@AssertsService_HostAddress = http://localhost:5083
+
+GET {{AssertsService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
