@@ -16,5 +16,6 @@ namespace AssertsService.Data
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<LastMaintenanceStrategy> LastMaintenanceStrategies { get; set; }
         public DbSet<UtilizationRates> UtilizationRates { get; set; }
+        public DbSet<BudgetPlan> BudgetPlans { get; set; }
     }
 }

@@ -49,34 +49,27 @@ namespace AssertsService.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DepartmentName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FrequentProblems")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GoogleMapsLink")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("GuaranteeExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("HistoricalCostsOfMaintenance")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentificationNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LocationOfOrigin")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MaintenanceContractForAsset")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MunicipalId")
@@ -114,6 +107,55 @@ namespace AssertsService.Migrations
                     b.HasKey("AssetStatusId");
 
                     b.ToTable("AssetStatus");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.BudgetPlan", b =>
+                {
+                    b.Property<int>("BudgetPlanId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BudgetPlanId"));
+
+                    b.Property<decimal>("AdministrativeCosts")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("AllocationEmergencyEudget")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("EquipmentCosts")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("EstimationOfMaintenance")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("HRCosts")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("MaintenanceManagementStyle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaintenanceStrategy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("MaterialCosts")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("OperationalCosts")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("ReviewGistoricalData")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BudgetPlanId");
+
+                    b.ToTable("BudgetPlans");
                 });
 
             modelBuilder.Entity("AssertsService.Models.LastMaintenanceStrategy", b =>
