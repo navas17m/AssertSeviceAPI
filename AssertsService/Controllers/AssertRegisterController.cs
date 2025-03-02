@@ -17,13 +17,13 @@ namespace AssertsService.Controllers
         }
 
         // GET: api/<AssertRegisterController>
-        [HttpGet]
-        public async Task<ActionResult> GetAssertRegisters()
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> GetAssertRegisters(int id)
         {
 
             try
             {
-                return Ok(await assertRegisterRepository.GetAssertRegisters());
+                return Ok(await assertRegisterRepository.GetAssertRegisters(id));
             }
             catch (Exception)
             {

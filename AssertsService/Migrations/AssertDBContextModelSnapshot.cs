@@ -66,6 +66,9 @@ namespace AssertsService.Migrations
                     b.Property<string>("IdentificationNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LocationOfOrigin")
                         .HasColumnType("nvarchar(max)");
 
@@ -109,6 +112,55 @@ namespace AssertsService.Migrations
                     b.ToTable("AssetStatus");
                 });
 
+            modelBuilder.Entity("AssertsService.Models.BudgetApproval", b =>
+                {
+                    b.Property<int>("BudgetApprovalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BudgetApprovalId"));
+
+                    b.Property<string>("BudgetApprovalReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BudgetApprovals")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BudgetDisparity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BudgetDisparityAction")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BudgetDisparityDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmergencyModificationReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmergencyModifications")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MonitoringBudgetImplementation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PeriodicReports")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BudgetApprovalId");
+
+                    b.ToTable("BudgetApprovals");
+                });
+
             modelBuilder.Entity("AssertsService.Models.BudgetPlan", b =>
                 {
                     b.Property<int>("BudgetPlanId")
@@ -131,6 +183,9 @@ namespace AssertsService.Migrations
 
                     b.Property<decimal>("HRCosts")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("MaintenanceManagementStyle")
                         .HasColumnType("nvarchar(max)");
@@ -156,6 +211,99 @@ namespace AssertsService.Migrations
                     b.HasKey("BudgetPlanId");
 
                     b.ToTable("BudgetPlans");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.ComplianceAndRegulatory", b =>
+                {
+                    b.Property<int>("ComplianceAndRegulatoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComplianceAndRegulatoryId"));
+
+                    b.Property<string>("Activity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BriefDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CitingReasons")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("YesOrNo")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ComplianceAndRegulatoryId");
+
+                    b.ToTable("ComplianceAndRegulatorys");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.KeyPerformanceIndicator", b =>
+                {
+                    b.Property<int>("KeyPerformanceIndicatorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KeyPerformanceIndicatorId"));
+
+                    b.Property<string>("Baseline")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ComingThrough")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("KeyPerformanceIndicatorCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KeyPerformanceIndicatorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("KeyPerformanceIndicatorId");
+
+                    b.ToTable("KeyPerformanceIndicators");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.KeyPerformanceIndicatorCategory", b =>
+                {
+                    b.Property<int>("KeyPerformanceIndicatorCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KeyPerformanceIndicatorCategoryId"));
+
+                    b.Property<string>("KeyPerformanceIndicatorCategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("KeyPerformanceIndicatorCategoryId");
+
+                    b.ToTable("KeyPerformanceIndicatorCategorys");
                 });
 
             modelBuilder.Entity("AssertsService.Models.LastMaintenanceStrategy", b =>
@@ -268,6 +416,44 @@ namespace AssertsService.Migrations
                     b.HasKey("UtilizationRatesId");
 
                     b.ToTable("UtilizationRates");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.WorkforceManagement", b =>
+                {
+                    b.Property<int>("WorkforceManagementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkforceManagementId"));
+
+                    b.Property<string>("Activity")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BriefDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CitingReasons")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("YesOrNo")
+                        .HasColumnType("bit");
+
+                    b.HasKey("WorkforceManagementId");
+
+                    b.ToTable("WorkforceManagements");
                 });
 #pragma warning restore 612, 618
         }

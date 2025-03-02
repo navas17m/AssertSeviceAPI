@@ -8,8 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AssertDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 builder.Services.AddScoped<IAssertRegisterRepository, AssertRegisterRepository>();
+builder.Services.AddScoped<IWorkforceManagementRepository, WorkforceManagementRepository>();
 builder.Services.AddScoped<IMunicipalRepository, MunicipalRepository>();
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
+builder.Services.AddScoped<IBudgetPlanRepository, BudgetPlanRepository>();
+builder.Services.AddScoped<IBudgetApprovalRepository, BudgetApprovalRepository>();
+builder.Services.AddScoped<IKeyPerformanceIndicatorRepository, KeyPerformanceIndicatorRepository>();
+builder.Services.AddScoped<IComplianceAndRegulatoryRepository, ComplianceAndRegulatoryRepository>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",

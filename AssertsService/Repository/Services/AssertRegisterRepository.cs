@@ -13,11 +13,10 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<AssertRegisterDTO>> GetAssertRegisters()
+        public async Task<IEnumerable<AssertRegisterDTO>> GetAssertRegisters(int MunicipalId)
         {
-            return await (from AS in assertContext.AssertRegisters 
-                          join M in assertContext.Municipals on AS.MunicipalId equals M.MunicipalId   
-                         // where AS.MunicipalId==
+            return await (from AS in assertContext.AssertRegisters                          
+                          where AS.MunicipalId== MunicipalId && AS.IsActive==true
                           select new AssertRegisterDTO { 
                 AssertRegisterId=AS.AssertRegisterId,
                 IdentificationNumber=AS.IdentificationNumber,
@@ -32,7 +31,7 @@ namespace AssertsService.Repository.Services
         }
         public async Task<AssertRegister> GetAssertRegister(int assertRegisterId)
         {
-            return await assertContext.AssertRegisters.FirstOrDefaultAsync(T=>T.AssertRegisterId== assertRegisterId);
+            return await assertContext.AssertRegisters.FirstOrDefaultAsync(T=>T.AssertRegisterId== assertRegisterId && T.IsActive==true);
         }
         public async Task<AssertRegister> AddAssertRegister(AssertRegister assertRegister)
         {

@@ -25,7 +25,9 @@ namespace AssertsService.Models
         public string? HistoricalCostsOfMaintenance { get; set; }
         public DateTime GuaranteeExpiryDate { get; set; }
         public int PriorityId { get; set; }
-        public string? MaintenanceContractForAsset { get; set; }       
+        public string? MaintenanceContractForAsset { get; set; }
+
+        public bool IsActive { get; set; }
 
     }
 }

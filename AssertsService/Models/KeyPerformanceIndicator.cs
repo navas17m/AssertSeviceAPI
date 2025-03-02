@@ -5,7 +5,7 @@
         public int KeyPerformanceIndicatorId { get; set; }
         public int MunicipalId { get; set; }
         public int UserId { get; set; }
-        public int KeyPerformanceIndicatorCategorylId { get; set; }
+        public int KeyPerformanceIndicatorCategoryId { get; set; }
         public string KeyPerformanceIndicatorName { get; set; }
         public string? Description { get; set; }
         public string? Baseline { get; set; }      

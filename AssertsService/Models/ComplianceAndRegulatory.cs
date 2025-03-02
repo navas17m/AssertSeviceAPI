@@ -8,5 +8,9 @@
         public bool YesOrNo { get; set; }
         public string? BriefDescription { get; set; }
         public string? CitingReasons { get; set; }
+
+        public int MunicipalId { get; set; }
+        public int UserId { get; set; }
+        public bool IsActive { get; set; }
     }
 }

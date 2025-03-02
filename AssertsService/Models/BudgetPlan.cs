@@ -15,5 +15,7 @@
         public string? AllocationEmergencyEudget { get; set; }      
         public string? EstimationOfMaintenance { get; set; }
         public bool ReviewGistoricalData { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

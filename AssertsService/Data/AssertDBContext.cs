@@ -17,5 +17,10 @@ namespace AssertsService.Data
         public DbSet<LastMaintenanceStrategy> LastMaintenanceStrategies { get; set; }
         public DbSet<UtilizationRates> UtilizationRates { get; set; }
         public DbSet<BudgetPlan> BudgetPlans { get; set; }
+        public DbSet<BudgetApproval> BudgetApprovals { get; set; }
+        public DbSet<KeyPerformanceIndicator> KeyPerformanceIndicators { get; set; }
+        public DbSet<KeyPerformanceIndicatorCategory> KeyPerformanceIndicatorCategorys { get; set; }
+        public DbSet<WorkforceManagement> WorkforceManagements { get; set; }
+        public DbSet<ComplianceAndRegulatory> ComplianceAndRegulatorys { get; set; }
     }
 }

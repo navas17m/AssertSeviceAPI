@@ -6,50 +6,49 @@ using AssertsService.DTO;
 
 namespace AssertsService.Repository.Services
 {
-    public class BudgetPlanRepository:IBudgetPlanRepository
+    public class BudgetApprovalRepository:IBudgetApprovalRepository
     {
         private readonly AssertDBContext assertContext;
-        public BudgetPlanRepository(AssertDBContext _assertContext)
+        public BudgetApprovalRepository(AssertDBContext _assertContext)
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<BudgetPlan>> GetBudgetPlans(int MunicipalId)
+        public async Task<IEnumerable<BudgetApproval>> GetBudgetApprovals(int MunicipalId)
         {
-            return await assertContext.BudgetPlans.Where(T=>T.MunicipalId==MunicipalId && T.IsActive==true).ToListAsync();
+            return await assertContext.BudgetApprovals.Where(T=>T.MunicipalId==MunicipalId && T.IsActive==true).ToListAsync();
         }
-        public async Task<BudgetPlan> GetBudgetPlan(int budgetPlanId)
+        public async Task<BudgetApproval> GetBudgetApproval(int BudgetApprovalId)
         {
-            return await assertContext.BudgetPlans.FirstOrDefaultAsync(T => T.BudgetPlanId == budgetPlanId && T.IsActive == true);
+            return await assertContext.BudgetApprovals.FirstOrDefaultAsync(T => T.BudgetApprovalId == BudgetApprovalId && T.IsActive == true);
         }
-        public async Task<BudgetPlan> AddBudgetPlan(BudgetPlan budgetPlan)
+        public async Task<BudgetApproval> AddBudgetApproval(BudgetApproval BudgetApproval)
         {
-            var result = await assertContext.BudgetPlans.AddAsync(budgetPlan);
+            var result = await assertContext.BudgetApprovals.AddAsync(BudgetApproval);
             await assertContext.SaveChangesAsync();
             return result.Entity;
         }
-        public async Task<BudgetPlan> UpdateBudgetPlan(BudgetPlan budgetPlan)
+        public async Task<BudgetApproval> UpdateBudgetApproval(BudgetApproval BudgetApproval)
         {
-            var result = await assertContext.BudgetPlans.FirstOrDefaultAsync(T => T.BudgetPlanId == budgetPlan.BudgetPlanId);
+            var result = await assertContext.BudgetApprovals.FirstOrDefaultAsync(T => T.BudgetApprovalId == BudgetApproval.BudgetApprovalId);
             if (result != null)
             {
-                result.MaintenanceManagementStyle = budgetPlan.MaintenanceManagementStyle;
-                result.MaintenanceStrategy = budgetPlan.MaintenanceStrategy;
-                result.HRCosts = budgetPlan.HRCosts;
-                result.MaterialCosts = budgetPlan.MaterialCosts;
-                result.EquipmentCosts = budgetPlan.EquipmentCosts;
-                result.AdministrativeCosts = budgetPlan.AdministrativeCosts;
-                result.OperationalCosts = budgetPlan.OperationalCosts;
-                result.AllocationEmergencyEudget = budgetPlan.AllocationEmergencyEudget;
-                result.EstimationOfMaintenance = budgetPlan.EstimationOfMaintenance;
-                result.ReviewGistoricalData = budgetPlan.ReviewGistoricalData;               
+                result.BudgetApprovals = BudgetApproval.BudgetApprovals;
+                result.BudgetApprovalReason = BudgetApproval.BudgetApprovalReason;
+                result.MonitoringBudgetImplementation = BudgetApproval.MonitoringBudgetImplementation;
+                result.PeriodicReports = BudgetApproval.PeriodicReports;
+                result.EmergencyModifications = BudgetApproval.EmergencyModifications;
+                result.EmergencyModificationReason = BudgetApproval.EmergencyModificationReason;
+                result.BudgetDisparity = BudgetApproval.BudgetDisparity;
+                result.BudgetDisparityAction = BudgetApproval.BudgetDisparityAction;
+                result.BudgetDisparityDescription = BudgetApproval.BudgetDisparityDescription;
                 await assertContext.SaveChangesAsync();
                 return result;
             }
             return null;
         }
-        public void DeleteBudgetPlan(int budgetPlanId)
+        public void DeleteBudgetApproval(int BudgetApprovalId)
         {
-            var result = assertContext.BudgetPlans.FirstOrDefault(T => T.BudgetPlanId == budgetPlanId);
+            var result = assertContext.BudgetApprovals.FirstOrDefault(T => T.BudgetApprovalId == BudgetApprovalId);
             if (result != null)
             {
                 result.IsActive = false;                
