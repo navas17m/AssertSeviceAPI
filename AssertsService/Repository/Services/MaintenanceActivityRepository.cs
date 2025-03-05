@@ -62,5 +62,21 @@ namespace AssertsService.Repository.Services
                 assertContext.SaveChanges();
             }
         }
+        public async Task<IEnumerable<PriorityOfWork>> GetPriorityOfWorks()
+        {
+            return await assertContext.PriorityOfWorks.ToListAsync();
+        }
+        public async Task<IEnumerable<PeriodicMaintenance>> GetPeriodicMaintenances()
+        {
+            return await assertContext.PeriodicMaintenances.ToListAsync();
+        }
+        public async Task<IEnumerable<WorkOrderStatus>> GetWorkOrderStatuses()
+        {
+            return await assertContext.WorkOrderStatuses.ToListAsync();
+        }
+        public async Task<IEnumerable<TypeofScheduledMaintenance>> GetTypeofScheduledMaintenances()
+        {
+            return await assertContext.TypeofScheduledMaintenances.ToListAsync();
+        }
     }
 }

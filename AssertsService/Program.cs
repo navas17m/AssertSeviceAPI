@@ -15,6 +15,10 @@ builder.Services.AddScoped<IBudgetPlanRepository, BudgetPlanRepository>();
 builder.Services.AddScoped<IBudgetApprovalRepository, BudgetApprovalRepository>();
 builder.Services.AddScoped<IKeyPerformanceIndicatorRepository, KeyPerformanceIndicatorRepository>();
 builder.Services.AddScoped<IComplianceAndRegulatoryRepository, ComplianceAndRegulatoryRepository>();
+builder.Services.AddScoped<IRiskManagementandContingencyPlansRepository, RiskManagementandContingencyPlanRepository>();
+builder.Services.AddScoped<IQualityPlanandContinuousImprovementRepository, QualityPlanandContinuousImprovementRepository>();
+builder.Services.AddScoped<IMaintenanceActivityRepository, MaintenanceActivityRepository>();
+builder.Services.AddScoped<IUploadRepository, UploadRepository>();
 
 builder.Services.AddCors(options =>
 {

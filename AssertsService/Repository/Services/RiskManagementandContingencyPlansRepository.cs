@@ -36,7 +36,7 @@ namespace AssertsService.Repository.Services
                 result.Description = RiskManagementandContingencyPlan.Description;
                 result.YesPartiallyNo = RiskManagementandContingencyPlan.YesPartiallyNo;
                 result.Reasons = RiskManagementandContingencyPlan.Reasons;
-                result.AttachLogFile = RiskManagementandContingencyPlan.AttachLogFile;
+                result.UploadId = RiskManagementandContingencyPlan.UploadId;
                 await assertContext.SaveChangesAsync();
                 return result;
             }

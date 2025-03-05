@@ -36,7 +36,7 @@ namespace AssertsService.Repository.Services
                 result.Description = QualityPlanandContinuousImprovement.Description;
                 result.YesPartiallyNo = QualityPlanandContinuousImprovement.YesPartiallyNo;
                 result.Reasons = QualityPlanandContinuousImprovement.Reasons;
-                result.AttachLogFile = QualityPlanandContinuousImprovement.AttachLogFile;
+                result.UploadId = QualityPlanandContinuousImprovement.UploadId;
                 await assertContext.SaveChangesAsync();
                 return result;
             }

@@ -22,5 +22,14 @@ namespace AssertsService.Data
         public DbSet<KeyPerformanceIndicatorCategory> KeyPerformanceIndicatorCategorys { get; set; }
         public DbSet<WorkforceManagement> WorkforceManagements { get; set; }
         public DbSet<ComplianceAndRegulatory> ComplianceAndRegulatorys { get; set; }
+        public DbSet<RiskManagementandContingencyPlan> RiskManagementandContingencyPlans { get; set; }
+        public DbSet<QualityPlanandContinuousImprovement> QualityPlanandContinuousImprovements { get; set; }
+        public DbSet<MaintenanceActivity> MaintenanceActivitys { get; set; }
+        public DbSet<Upload> Uploads { get; set; }
+        public DbSet<PeriodicMaintenance> PeriodicMaintenances { get; set; }
+        public DbSet<WorkOrderStatus> WorkOrderStatuses { get; set; }
+        public DbSet<TypeofScheduledMaintenance> TypeofScheduledMaintenances { get; set; }
+        public DbSet<PriorityOfWork> PriorityOfWorks { get; set; }
+
     }
 }

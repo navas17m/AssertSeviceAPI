@@ -98,5 +98,58 @@ namespace AssertsService.Controllers
                 //StatusCode(StatusCodes.Status500InternalServerError, "Error deleting asserts");
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetPriorityOfWorks()
+        {
+
+            try
+            {
+                return Ok(await MaintenanceActivityRepository.GetPriorityOfWorks());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetPeriodicMaintenances()
+        {
+
+            try
+            {
+                return Ok(await MaintenanceActivityRepository.GetPeriodicMaintenances());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetWorkOrderStatuses()
+        {
+
+            try
+            {
+                return Ok(await MaintenanceActivityRepository.GetWorkOrderStatuses());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetTypeofScheduledMaintenances()
+        {
+
+            try
+            {
+                return Ok(await MaintenanceActivityRepository.GetTypeofScheduledMaintenances());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
     }
 }

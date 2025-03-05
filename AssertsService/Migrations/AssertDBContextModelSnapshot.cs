@@ -42,10 +42,10 @@ namespace AssertsService.Migrations
                     b.Property<int>("CoordinatesY")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateOfLastInspection")
+                    b.Property<DateTime?>("DateOfLastInspection")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfPurchase")
+                    b.Property<DateTime?>("DateOfPurchase")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DepartmentName")
@@ -57,13 +57,14 @@ namespace AssertsService.Migrations
                     b.Property<string>("GoogleMapsLink")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("GuaranteeExpiryDate")
+                    b.Property<DateTime?>("GuaranteeExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("HistoricalCostsOfMaintenance")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentificationNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -323,6 +324,76 @@ namespace AssertsService.Migrations
                     b.ToTable("LastMaintenanceStrategies");
                 });
 
+            modelBuilder.Entity("AssertsService.Models.MaintenanceActivity", b =>
+                {
+                    b.Property<int>("MaintenanceActivityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaintenanceActivityId"));
+
+                    b.Property<bool>("Approvals")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Dateoflastmaintenance")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estimatinglaborcosts")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Maintenancecompletiondate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Maintenancemanagementstyle")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("Maintenancestartdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Nextmaintenancedate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PeriodicmaintenanceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Postmaintenance")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PriorityofworkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Resources")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TypeofscheduledmaintenanceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Workorderissuedate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Workordernumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WorkorderstatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MaintenanceActivityId");
+
+                    b.ToTable("MaintenanceActivitys");
+                });
+
             modelBuilder.Entity("AssertsService.Models.Municipal", b =>
                 {
                     b.Property<int>("MunicipalId")
@@ -338,6 +409,23 @@ namespace AssertsService.Migrations
                     b.HasKey("MunicipalId");
 
                     b.ToTable("Municipals");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.PeriodicMaintenance", b =>
+                {
+                    b.Property<int>("PeriodicMaintenanceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PeriodicMaintenanceId"));
+
+                    b.Property<string>("PeriodicMaintenanceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PeriodicMaintenanceId");
+
+                    b.ToTable("PeriodicMaintenances");
                 });
 
             modelBuilder.Entity("AssertsService.Models.Priority", b =>
@@ -357,6 +445,61 @@ namespace AssertsService.Migrations
                     b.ToTable("Priorities");
                 });
 
+            modelBuilder.Entity("AssertsService.Models.PriorityOfWork", b =>
+                {
+                    b.Property<int>("PriorityOfWorkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriorityOfWorkId"));
+
+                    b.Property<string>("PriorityOfWorkName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PriorityOfWorkId");
+
+                    b.ToTable("PriorityOfWorks");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.QualityPlanandContinuousImprovement", b =>
+                {
+                    b.Property<int>("QualityPlanandContinuousImprovementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QualityPlanandContinuousImprovementId"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reasons")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Requirement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UploadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<short>("YesPartiallyNo")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("QualityPlanandContinuousImprovementId");
+
+                    b.ToTable("QualityPlanandContinuousImprovements");
+                });
+
             modelBuilder.Entity("AssertsService.Models.Region", b =>
                 {
                     b.Property<int>("RegionId")
@@ -372,6 +515,85 @@ namespace AssertsService.Migrations
                     b.HasKey("RegionId");
 
                     b.ToTable("Regions");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.RiskManagementandContingencyPlan", b =>
+                {
+                    b.Property<int>("RiskManagementandContingencyPlanId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RiskManagementandContingencyPlanId"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reasons")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Requirement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UploadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<short>("YesPartiallyNo")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("RiskManagementandContingencyPlanId");
+
+                    b.ToTable("RiskManagementandContingencyPlans");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.TypeofScheduledMaintenance", b =>
+                {
+                    b.Property<int>("TypeofScheduledMaintenanceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TypeofScheduledMaintenanceId"));
+
+                    b.Property<string>("TypeofScheduledMaintenanceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TypeofScheduledMaintenanceId");
+
+                    b.ToTable("TypeofScheduledMaintenances");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.Upload", b =>
+                {
+                    b.Property<int>("UploadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UploadId"));
+
+                    b.Property<byte[]>("FileData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UploadedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("UploadId");
+
+                    b.ToTable("Uploads");
                 });
 
             modelBuilder.Entity("AssertsService.Models.UserDetails", b =>
@@ -416,6 +638,23 @@ namespace AssertsService.Migrations
                     b.HasKey("UtilizationRatesId");
 
                     b.ToTable("UtilizationRates");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.WorkOrderStatus", b =>
+                {
+                    b.Property<int>("WorkOrderStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkOrderStatusId"));
+
+                    b.Property<string>("WorkOrderStatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("WorkOrderStatusId");
+
+                    b.ToTable("WorkOrderStatuses");
                 });
 
             modelBuilder.Entity("AssertsService.Models.WorkforceManagement", b =>

@@ -4,7 +4,7 @@ namespace AssertsService.Repository.Interface
 {
     public interface IAssertRegisterRepository
     {
-        Task<IEnumerable<AssertRegisterDTO>> GetAssertRegisters(int MunicipalId);
+        Task<IEnumerable<AssertRegister>> GetAssertRegisters(int MunicipalId);
         Task<AssertRegister> GetAssertRegister(int assertRegisterId);
         Task<AssertRegister> AddAssertRegister(AssertRegister assertRegister);
         Task<AssertRegister> UpdateAssertRegister(AssertRegister assertRegister);

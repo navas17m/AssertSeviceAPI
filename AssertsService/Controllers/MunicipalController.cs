@@ -6,7 +6,7 @@ using AssertsService.DTO;
 
 namespace AssertsService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class MunicipalController : ControllerBase
     {

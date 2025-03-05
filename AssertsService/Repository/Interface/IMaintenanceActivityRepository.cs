@@ -10,5 +10,9 @@ namespace AssertsService.Repository.Interface
         Task<MaintenanceActivity> AddMaintenanceActivity(MaintenanceActivity MaintenanceActivity);
         Task<MaintenanceActivity> UpdateMaintenanceActivity(MaintenanceActivity MaintenanceActivity);
         void DeleteMaintenanceActivity(int MaintenanceActivityId);
+        Task<IEnumerable<PriorityOfWork>> GetPriorityOfWorks();
+        Task<IEnumerable<PeriodicMaintenance>> GetPeriodicMaintenances();
+        Task<IEnumerable<WorkOrderStatus>> GetWorkOrderStatuses();
+        Task<IEnumerable<TypeofScheduledMaintenance>> GetTypeofScheduledMaintenances();
     }
 }

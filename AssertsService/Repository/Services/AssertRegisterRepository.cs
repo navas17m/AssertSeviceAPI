@@ -13,21 +13,22 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<AssertRegisterDTO>> GetAssertRegisters(int MunicipalId)
+        public async Task<IEnumerable<AssertRegister>> GetAssertRegisters(int MunicipalId)
         {
-            return await (from AS in assertContext.AssertRegisters                          
-                          where AS.MunicipalId== MunicipalId && AS.IsActive==true
-                          select new AssertRegisterDTO { 
-                AssertRegisterId=AS.AssertRegisterId,
-                IdentificationNumber=AS.IdentificationNumber,
-                MunicipalId=AS.MunicipalId,                             
-                LocationOfOrigin=AS.LocationOfOrigin,
-                CoordinatesX=AS.CoordinatesX,
-                CoordinatesY=AS.CoordinatesY,
-                DateOfPurchase=AS.DateOfPurchase
+            return await assertContext.AssertRegisters.Where(T => T.MunicipalId == MunicipalId && T.IsActive == true).ToListAsync();
+            //    (from AS in assertContext.AssertRegisters                          
+            //              where AS.MunicipalId== MunicipalId && AS.IsActive==true
+            //              select new AssertRegisterDTO { 
+            //    AssertRegisterId=AS.AssertRegisterId,
+            //    IdentificationNumber=AS.IdentificationNumber,
+            //    MunicipalId=AS.MunicipalId,                             
+            //    LocationOfOrigin=AS.LocationOfOrigin,
+            //    CoordinatesX=AS.CoordinatesX,
+            //    CoordinatesY=AS.CoordinatesY,
+            //    DateOfPurchase=AS.DateOfPurchase
 
-            }).ToListAsync();
-                //assertContext.AssertRegisters.ToListAsync();
+            //}).ToListAsync();
+            //assertContext.AssertRegisters.ToListAsync();
         }
         public async Task<AssertRegister> GetAssertRegister(int assertRegisterId)
         {
