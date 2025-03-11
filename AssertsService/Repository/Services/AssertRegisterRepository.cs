@@ -65,6 +65,8 @@ namespace AssertsService.Repository.Services
                 result.LocationOfOrigin = assertRegister.LocationOfOrigin;
                 result.DepartmentName = assertRegister.DepartmentName;
                 result.GuaranteeExpiryDate = assertRegister.GuaranteeExpiryDate;
+                result.Evidence = assertRegister.Evidence;
+                result.AccidentDescription = assertRegister.AccidentDescription;
                 await assertContext.SaveChangesAsync();
                 return result;
             }

@@ -30,6 +30,9 @@ namespace AssertsService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AssertRegisterId"));
 
+                    b.Property<string>("AccidentDescription")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("AccidentLog")
                         .HasColumnType("bit");
 
@@ -49,6 +52,9 @@ namespace AssertsService.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DepartmentName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Evidence")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FrequentProblems")
