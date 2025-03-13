@@ -8,6 +8,7 @@ namespace AssertsService.Models
     {
         public int MaintenanceActivityId { get; set; }
         public int MunicipalId { get; set; }
+        public int SubMunicipalId { get; set; }
         public int UserId { get; set; }
         public bool Maintenancemanagementstyle { get; set; }
         public string? Workordernumber { get; set; }

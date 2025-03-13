@@ -6,5 +6,6 @@ namespace AssertsService.Repository.Interface
     public interface IMunicipalRepository
     {
         Task<IEnumerable<MunicipalDTO>> GetMunicipal();
+        Task<IEnumerable<SubMunicipal>> GetSubMunicipals(int MunicipalId);
     }
 }

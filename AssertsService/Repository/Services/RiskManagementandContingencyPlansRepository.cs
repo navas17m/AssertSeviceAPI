@@ -13,9 +13,9 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<RiskManagementandContingencyPlan>> GetRiskManagementandContingencyPlans(int MunicipalId)
+        public async Task<IEnumerable<RiskManagementandContingencyPlan>> GetRiskManagementandContingencyPlans(int userId)
         {
-            return await assertContext.RiskManagementandContingencyPlans.Where(T=>T.MunicipalId==MunicipalId && T.IsActive==true).ToListAsync();
+            return await assertContext.RiskManagementandContingencyPlans.Where(T=>T.UserId == userId && T.IsActive==true).ToListAsync();
         }
         public async Task<RiskManagementandContingencyPlan> GetRiskManagementandContingencyPlan(int RiskManagementandContingencyPlanId)
         {

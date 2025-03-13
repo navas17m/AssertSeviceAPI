@@ -13,9 +13,9 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<MaintenanceActivity>> GetMaintenanceActivitys(int MunicipalId)
+        public async Task<IEnumerable<MaintenanceActivity>> GetMaintenanceActivitys(int userId)
         {
-            return await assertContext.MaintenanceActivitys.Where(T=>T.MunicipalId==MunicipalId && T.IsActive==true).ToListAsync();
+            return await assertContext.MaintenanceActivitys.Where(T=>T.UserId== userId && T.IsActive==true).ToListAsync();
         }
         public async Task<MaintenanceActivity> GetMaintenanceActivity(int MaintenanceActivityId)
         {

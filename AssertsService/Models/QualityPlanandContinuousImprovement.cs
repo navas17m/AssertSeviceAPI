@@ -9,6 +9,7 @@
         public int? UploadId { get; set; }
         public string? Reasons { get; set; }
         public int MunicipalId { get; set; }
+        public int SubMunicipalId { get; set; }
         public int UserId { get; set; }
         public bool IsActive { get; set; }
     }

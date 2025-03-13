@@ -21,5 +21,9 @@ namespace AssertsService.Repository.Services
             }).ToListAsync();
                 //assertContext.Municipals.ToListAsync();
         }
+        public async Task<IEnumerable<SubMunicipal>> GetSubMunicipals(int municipalId)
+        {
+            return await assertContext.SubMunicipals.Where(T => T.MunicipalId == municipalId).ToListAsync();
+        }
     }
 }

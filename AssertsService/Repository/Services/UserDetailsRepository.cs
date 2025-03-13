@@ -19,8 +19,7 @@ namespace AssertsService.Repository.Services
                           where UD.UserName == userDeatils.UserName && UD.Password == userDeatils.Password
                           select new UserDetailsDTO { 
                             UserDetailsId= UD.UserDetailsId,
-                            UserName=UD.UserName,
-                            MunicipalId=UD.MunicipalId                           
+                            UserName=UD.UserName                                                   
                           }).FirstOrDefaultAsync();
                 //assertContext.UserDetails.FirstOrDefaultAsync(T => T.UserName == userDeatils.UserName && T.Password==userDeatils.Password);
         }

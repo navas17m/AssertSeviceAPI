@@ -13,9 +13,9 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<AssertRegister>> GetAssertRegisters(int MunicipalId)
+        public async Task<IEnumerable<AssertRegister>> GetAssertRegisters(int userId)
         {
-            return await assertContext.AssertRegisters.Where(T => T.MunicipalId == MunicipalId && T.IsActive == true).ToListAsync();
+            return await assertContext.AssertRegisters.Where(T => T.UserId == userId && T.IsActive == true).ToListAsync();
             //    (from AS in assertContext.AssertRegisters                          
             //              where AS.MunicipalId== MunicipalId && AS.IsActive==true
             //              select new AssertRegisterDTO { 
@@ -81,7 +81,14 @@ namespace AssertsService.Repository.Services
                 assertContext.SaveChanges();
             }            
         }
-
+        public async Task<IEnumerable<Assert>> GetAsserts()
+        {
+            return await assertContext.Asserts.ToListAsync();
+        }
+        public async Task<IEnumerable<SubAssert>> GetSubAsserts(int assertId)
+        {
+            return await assertContext.SubAsserts.Where(T=>T.AssertId==assertId).ToListAsync();
+        }
         public async Task<IEnumerable<LastMaintenanceStrategy>> GetLastMaintenanceStrategy()
         {
             return await assertContext.LastMaintenanceStrategies.ToListAsync();

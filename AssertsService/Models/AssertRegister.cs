@@ -7,8 +7,10 @@ namespace AssertsService.Models
     {
         public int AssertRegisterId { get; set; }
         public int MunicipalId { get; set; }
+        public int SubMunicipalId { get; set; }
         public int UserId { get; set; }
-       
+        public int AssertId { get; set; }
+        public int SubAssertId { get; set; }
         public string IdentificationNumber { get; set; }
         public string? LocationOfOrigin { get; set; }
         public int CoordinatesX { get; set; }

@@ -13,11 +13,11 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<KeyPerformanceIndicatorDTO>> GetKeyPerformanceIndicators(int MunicipalId)
+        public async Task<IEnumerable<KeyPerformanceIndicatorDTO>> GetKeyPerformanceIndicators(int userId)
         {
             return await (from KP in assertContext.KeyPerformanceIndicators join KPC in assertContext.KeyPerformanceIndicatorCategorys
                           on KP.KeyPerformanceIndicatorCategoryId equals KPC.KeyPerformanceIndicatorCategoryId
-                          where KP.MunicipalId==MunicipalId && KP.IsActive
+                          where KP.UserId== userId && KP.IsActive
                           select new KeyPerformanceIndicatorDTO { 
                             KeyPerformanceIndicatorId=KP.KeyPerformanceIndicatorId,
                             KeyPerformanceIndicatorCategorylName=KPC.KeyPerformanceIndicatorCategoryName,

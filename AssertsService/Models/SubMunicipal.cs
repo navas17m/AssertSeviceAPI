@@ -4,5 +4,7 @@
     {
         public int SubMunicipalId { get; set; }
         public string SubMunicipalName { get; set; }
+
+        public int MunicipalId { get; set; }
     }
 }

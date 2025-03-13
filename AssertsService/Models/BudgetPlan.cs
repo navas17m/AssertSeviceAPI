@@ -4,6 +4,7 @@
     {
         public int BudgetPlanId { get; set; }
         public int MunicipalId { get; set; }
+        public int SubMunicipalId { get; set; }
         public int UserId { get; set; }
         public string? MaintenanceManagementStyle { get; set; }
         public string? MaintenanceStrategy { get; set; }

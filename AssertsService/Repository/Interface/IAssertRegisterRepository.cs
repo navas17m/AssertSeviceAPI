@@ -13,5 +13,8 @@ namespace AssertsService.Repository.Interface
         Task<IEnumerable<AssetStatus>> GetAssetStatus();
         Task<IEnumerable<UtilizationRates>> GetUtilizationRates();
         Task<IEnumerable<Priority>> GetLastPriority();
+
+        Task<IEnumerable<Assert>> GetAsserts();
+        Task<IEnumerable<SubAssert>> GetSubAsserts(int AssertId);
     }
 }

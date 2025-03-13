@@ -19,6 +19,7 @@ builder.Services.AddScoped<IRiskManagementandContingencyPlansRepository, RiskMan
 builder.Services.AddScoped<IQualityPlanandContinuousImprovementRepository, QualityPlanandContinuousImprovementRepository>();
 builder.Services.AddScoped<IMaintenanceActivityRepository, MaintenanceActivityRepository>();
 builder.Services.AddScoped<IUploadRepository, UploadRepository>();
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 
 builder.Services.AddCors(options =>
 {

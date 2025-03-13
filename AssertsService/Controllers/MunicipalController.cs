@@ -29,6 +29,19 @@ namespace AssertsService.Controllers
                 //return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
             }
         }
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> GetSubMunicipals(int id)
+        {
+
+            try
+            {
+                return Ok(await municipalRepository.GetSubMunicipals(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
 
     }
 }

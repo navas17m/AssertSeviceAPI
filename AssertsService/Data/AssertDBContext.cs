@@ -30,6 +30,9 @@ namespace AssertsService.Data
         public DbSet<WorkOrderStatus> WorkOrderStatuses { get; set; }
         public DbSet<TypeofScheduledMaintenance> TypeofScheduledMaintenances { get; set; }
         public DbSet<PriorityOfWork> PriorityOfWorks { get; set; }
+        public DbSet<Assert> Asserts { get; set; }
+        public DbSet<SubAssert> SubAsserts { get; set; }
+        public DbSet<SubMunicipal> SubMunicipals { get; set; }
 
     }
 }
