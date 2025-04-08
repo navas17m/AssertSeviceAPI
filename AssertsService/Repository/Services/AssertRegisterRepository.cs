@@ -13,21 +13,23 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<AssertRegister>> GetAssertRegisters(int userId)
+        public async Task<IEnumerable<AssertRegisterDTO>> GetAssertRegisters(int userId)
         {
-            return await assertContext.AssertRegisters.Where(T => T.UserId == userId && T.IsActive == true).ToListAsync();
-            //    (from AS in assertContext.AssertRegisters                          
-            //              where AS.MunicipalId== MunicipalId && AS.IsActive==true
-            //              select new AssertRegisterDTO { 
-            //    AssertRegisterId=AS.AssertRegisterId,
-            //    IdentificationNumber=AS.IdentificationNumber,
-            //    MunicipalId=AS.MunicipalId,                             
-            //    LocationOfOrigin=AS.LocationOfOrigin,
-            //    CoordinatesX=AS.CoordinatesX,
-            //    CoordinatesY=AS.CoordinatesY,
-            //    DateOfPurchase=AS.DateOfPurchase
+            return await //assertContext.AssertRegisters.Where(T => T.UserId == userId && T.IsActive == true).ToListAsync();
+            (from AS in assertContext.AssertRegisters
+             where AS.UserId == userId && AS.IsActive == true
+             select new AssertRegisterDTO
+             {
+                 AssertRegisterId = AS.AssertRegisterId,
+                 IdentificationNumber = AS.IdentificationNumber,      
+                 CoordinatesX = AS.CoordinatesX,
+                 CoordinatesY = AS.CoordinatesY,
+                 DateOfPurchase = AS.DateOfPurchase,
+                 LocationOfOrigin=AS.LocationOfOrigin,
+                 AssertName= (from M in assertContext.Asserts where M.AssertId == AS.AssertId select M.AssertName).FirstOrDefault(),
+                 SubAssertName = (from M in assertContext.SubAsserts where M.SubAssertId == AS.SubAssertId select M.SubAssertName).FirstOrDefault(),
 
-            //}).ToListAsync();
+             }).ToListAsync();
             //assertContext.AssertRegisters.ToListAsync();
         }
         public async Task<AssertRegister> GetAssertRegister(int assertRegisterId)
@@ -50,23 +52,27 @@ namespace AssertsService.Repository.Services
                 result.HistoricalCostsOfMaintenance = assertRegister.HistoricalCostsOfMaintenance;
                 result.AccidentLog = assertRegister.AccidentLog;               
                 result.DateOfPurchase = assertRegister.DateOfPurchase;
+                result.DateOfLastInspection = assertRegister.DateOfLastInspection;
+                result.DateOfInspection = assertRegister.DateOfInspection;
                 result.AssetStatusId = assertRegister.AssetStatusId;
                 result.CoordinatesX = assertRegister.CoordinatesX;
                 result.CoordinatesY = assertRegister.CoordinatesY;
                 result.MunicipalId = assertRegister.MunicipalId;
                 result.IdentificationNumber = assertRegister.IdentificationNumber;
                 result.PriorityId = assertRegister.PriorityId;
-                result.UtilizationRateId = assertRegister.UtilizationRateId;
-                result.DateOfLastInspection = assertRegister.DateOfLastInspection;
+                result.UtilizationRateId = assertRegister.UtilizationRateId;                
                 result.StrategyLastMaintenanceId = assertRegister.StrategyLastMaintenanceId;
                 result.MaintenanceContractForAsset = assertRegister.MaintenanceContractForAsset;
-                result.FrequentProblems = assertRegister.FrequentProblems;
-                result.DateOfLastInspection = assertRegister.DateOfLastInspection;
+                result.FrequentProblems = assertRegister.FrequentProblems;              
                 result.LocationOfOrigin = assertRegister.LocationOfOrigin;
                 result.DepartmentName = assertRegister.DepartmentName;
                 result.GuaranteeExpiryDate = assertRegister.GuaranteeExpiryDate;
                 result.Evidence = assertRegister.Evidence;
                 result.AccidentDescription = assertRegister.AccidentDescription;
+                result.AssertId = assertRegister.AssertId;
+                result.SubAssertId = assertRegister.SubAssertId;
+                result.UploadEvidenseId = assertRegister.UploadEvidenseId;
+                result.UploadEvidenseId1 = assertRegister.UploadEvidenseId1;
                 await assertContext.SaveChangesAsync();
                 return result;
             }

@@ -13,9 +13,25 @@ namespace AssertsService.Repository.Services
         {
             this.assertContext = _assertContext;
         }
-        public async Task<IEnumerable<BudgetPlan>> GetBudgetPlans(int userId)
+        public async Task<IEnumerable<BudgetPlanDTO>> GetBudgetPlans(int userId)
         {
-            return await assertContext.BudgetPlans.Where(T=>T.UserId== userId && T.IsActive==true).ToListAsync();
+            return await (from AS in assertContext.BudgetPlans
+                          where AS.UserId == userId && AS.IsActive == true
+                          select new BudgetPlanDTO
+                          {
+                              BudgetPlanId = AS.BudgetPlanId,
+                              EquipmentCosts = AS.EquipmentCosts,
+                              HRCosts = AS.HRCosts,
+                              MaterialCosts=AS.MaterialCosts,
+                              MaintenanceManagementStyle = (from M in assertContext.MaintenanceManagementStyles 
+                                                            where M.MaintenanceManagementStyleId == AS.MaintenanceManagementStyleId 
+                                                            select M.MaintenanceManagementStyleName).FirstOrDefault(),
+                              MaintenanceStrategy = (from M in assertContext.MaintenanceStrategies
+                                                            where M.MaintenanceStrategyId == AS.MaintenanceStrategyId
+                                                     select M.MaintenanceStrategyName).FirstOrDefault(),
+
+
+                          }).ToListAsync();//assertContext.BudgetPlans.Where(T=>T.UserId== userId && T.IsActive==true).ToListAsync();
         }
         public async Task<BudgetPlan> GetBudgetPlan(int budgetPlanId)
         {
@@ -32,8 +48,8 @@ namespace AssertsService.Repository.Services
             var result = await assertContext.BudgetPlans.FirstOrDefaultAsync(T => T.BudgetPlanId == budgetPlan.BudgetPlanId);
             if (result != null)
             {
-                result.MaintenanceManagementStyle = budgetPlan.MaintenanceManagementStyle;
-                result.MaintenanceStrategy = budgetPlan.MaintenanceStrategy;
+                result.MaintenanceManagementStyleId = budgetPlan.MaintenanceManagementStyleId;
+                result.MaintenanceStrategyId = budgetPlan.MaintenanceStrategyId;
                 result.HRCosts = budgetPlan.HRCosts;
                 result.MaterialCosts = budgetPlan.MaterialCosts;
                 result.EquipmentCosts = budgetPlan.EquipmentCosts;
@@ -41,7 +57,8 @@ namespace AssertsService.Repository.Services
                 result.OperationalCosts = budgetPlan.OperationalCosts;
                 result.AllocationEmergencyEudget = budgetPlan.AllocationEmergencyEudget;
                 result.EstimationOfMaintenance = budgetPlan.EstimationOfMaintenance;
-                result.ReviewGistoricalData = budgetPlan.ReviewGistoricalData;               
+                result.ReviewGistoricalData = budgetPlan.ReviewGistoricalData;
+                result.UploadId = budgetPlan.UploadId;
                 await assertContext.SaveChangesAsync();
                 return result;
             }
@@ -55,6 +72,14 @@ namespace AssertsService.Repository.Services
                 result.IsActive = false;                
                 assertContext.SaveChanges();
             }
+        }
+        public async Task<IEnumerable<MaintenanceManagementStyle>> GetMaintenanceManagementStyles()
+        {
+            return await assertContext.MaintenanceManagementStyles.ToListAsync();
+        }
+        public async Task<IEnumerable<MaintenanceStrategy>> GetMaintenanceStrategies()
+        {
+            return await assertContext.MaintenanceStrategies.ToListAsync();
         }
     }
 }

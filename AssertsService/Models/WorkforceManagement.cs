@@ -3,7 +3,7 @@
     public class WorkforceManagement
     {
         public int WorkforceManagementId { get; set; }
-        public string Activity { get; set; }
+        public int WorkforceManagementActivityId { get; set; }
         public string? Description { get; set; }
         public bool YesOrNo { get; set; }
         public string? BriefDescription { get; set; }

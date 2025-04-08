@@ -98,5 +98,29 @@ namespace AssertsService.Controllers
                 //StatusCode(StatusCodes.Status500InternalServerError, "Error deleting asserts");
             }
         }
+        public async Task<ActionResult> GetMaintenanceManagementStyles()
+        {
+
+            try
+            {
+                return Ok(await budgetPlanRepository.GetMaintenanceManagementStyles());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
+        public async Task<ActionResult> GetMaintenanceStrategies()
+        {
+
+            try
+            {
+                return Ok(await budgetPlanRepository.GetMaintenanceStrategies());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
     }
 }

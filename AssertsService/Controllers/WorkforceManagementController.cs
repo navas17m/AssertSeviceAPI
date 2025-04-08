@@ -98,5 +98,18 @@ namespace AssertsService.Controllers
                 //StatusCode(StatusCodes.Status500InternalServerError, "Error deleting asserts");
             }
         }
+        [HttpGet]
+        public async Task<ActionResult> GetWorkforceManagementActivities()
+        {
+
+            try
+            {
+                return Ok(await WorkforceManagementRepository.GetWorkforceManagementActivities());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
     }
 }

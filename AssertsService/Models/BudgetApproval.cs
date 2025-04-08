@@ -15,6 +15,7 @@
         public string? BudgetDisparity { get; set; }
         public bool BudgetDisparityAction { get; set; }
         public string? BudgetDisparityDescription { get; set; }
+        public int UploadId { get; set; }
         public bool IsActive { get; set; }
     }
 }

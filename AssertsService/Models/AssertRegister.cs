@@ -18,6 +18,7 @@ namespace AssertsService.Models
         public string? GoogleMapsLink { get; set; }
         public DateTime? DateOfPurchase { get; set; }
         public string? DepartmentName  { get; set; }
+        public DateTime? DateOfInspection { get; set; }
         public DateTime? DateOfLastInspection { get; set; }
         public bool AccidentLog { get; set; }
         public int StrategyLastMaintenanceId { get; set; }
@@ -30,6 +31,8 @@ namespace AssertsService.Models
         public string? MaintenanceContractForAsset { get; set; }
         public string? Evidence { get; set; }
         public string? AccidentDescription  { get; set; }
+        public int UploadEvidenseId { get; set; }
+        public int UploadEvidenseId1 { get; set; }
         public bool IsActive { get; set; }
 
     }

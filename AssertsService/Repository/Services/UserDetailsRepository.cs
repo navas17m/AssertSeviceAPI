@@ -16,10 +16,12 @@ namespace AssertsService.Repository.Services
         public async Task<UserDetailsDTO> GetUserDeatilsById(UserDetailsDTO userDeatils)
         {
             return await (from UD in assertContext.UserDetails
-                          where UD.UserName == userDeatils.UserName && UD.Password == userDeatils.Password
+                          where UD.UserName == userDeatils.UserName && UD.Password == userDeatils.Password && UD.IsActive
                           select new UserDetailsDTO { 
                             UserDetailsId= UD.UserDetailsId,
-                            UserName=UD.UserName                                                   
+                            UserName=UD.UserName,
+                            MunicipalId=UD.MunicipalId,
+                            SubMunicipalId=UD.SubMunicipalId
                           }).FirstOrDefaultAsync();
                 //assertContext.UserDetails.FirstOrDefaultAsync(T => T.UserName == userDeatils.UserName && T.Password==userDeatils.Password);
         }

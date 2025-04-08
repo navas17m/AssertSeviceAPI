@@ -48,6 +48,12 @@ namespace AssertsService.Repository.Services
                 result.Approvals = MaintenanceActivity.Approvals;
                 result.WorkorderstatusId = MaintenanceActivity.WorkorderstatusId;
                 result.Postmaintenance = MaintenanceActivity.Postmaintenance;
+                result.Actualtimetakenformaintenance = MaintenanceActivity.Actualtimetakenformaintenance;
+                result.MaintenanceCost = MaintenanceActivity.MaintenanceCost;
+                result.HRCost = MaintenanceActivity.HRCost;
+                result.HRMaterialCost = MaintenanceActivity.HRMaterialCost;
+                result.OtherCost = MaintenanceActivity.OtherCost;
+                result.PercentageCompleted=MaintenanceActivity.PercentageCompleted;
                 await assertContext.SaveChangesAsync();
                 return result;
             }

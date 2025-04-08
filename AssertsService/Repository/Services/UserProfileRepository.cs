@@ -15,7 +15,7 @@ namespace AssertsService.Repository.Services
         }
         public async Task<IEnumerable<UserDetailsDTO>> GetUserDetails( )
         {
-            return await (from UD in assertContext.UserDetails  where UD.UserDetailsId!=4
+            return await (from UD in assertContext.UserDetails  where UD.UserName!="admin" && UD.IsActive
                           select new UserDetailsDTO
                           {
                               UserDetailsId = UD.UserDetailsId,
@@ -34,6 +34,28 @@ namespace AssertsService.Repository.Services
             await assertContext.SaveChangesAsync();
             return result.Entity;
         }
-       
+        public async Task<UserDetails> UpdateUserDetails(UserDetails UserDetails)
+        {
+            var result = await assertContext.UserDetails.FirstOrDefaultAsync(T => T.UserDetailsId == UserDetails.UserDetailsId);
+            if (result != null)
+            {
+                result.UserName = UserDetails.UserName;
+                result.MunicipalId = UserDetails.MunicipalId;
+                result.SubMunicipalId = UserDetails.SubMunicipalId;               
+                await assertContext.SaveChangesAsync();
+                return result;
+            }
+            return null;
+        }
+        public void DeleteUserDetails(int UserDetailsId)
+        {
+            var result = assertContext.UserDetails.FirstOrDefault(T => T.UserDetailsId == UserDetailsId);
+            if (result != null)
+            {
+                result.IsActive = false;
+                assertContext.SaveChanges();
+            }
+        }
+
     }
 }

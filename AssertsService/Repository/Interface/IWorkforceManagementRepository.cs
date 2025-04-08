@@ -10,5 +10,6 @@ namespace AssertsService.Repository.Interface
         Task<WorkforceManagement> AddWorkforceManagement(WorkforceManagement WorkforceManagement);
         Task<WorkforceManagement> UpdateWorkforceManagement(WorkforceManagement WorkforceManagement);
         void DeleteWorkforceManagement(int WorkforceManagementId);
+        Task<IEnumerable<WorkforceManagementActivity>> GetWorkforceManagementActivities();
     }
 }

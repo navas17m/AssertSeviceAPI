@@ -17,14 +17,14 @@ namespace AssertsService.Repository.Services
         {
             return await (from KP in assertContext.KeyPerformanceIndicators join KPC in assertContext.KeyPerformanceIndicatorCategorys
                           on KP.KeyPerformanceIndicatorCategoryId equals KPC.KeyPerformanceIndicatorCategoryId
+                          join KPI in assertContext.KeyPerformanceIndicatorNames on KP.KeyPerformanceIndicatorNameId equals KPI.KeyPerformanceIndicatorNameId
                           where KP.UserId== userId && KP.IsActive
                           select new KeyPerformanceIndicatorDTO { 
                             KeyPerformanceIndicatorId=KP.KeyPerformanceIndicatorId,
                             KeyPerformanceIndicatorCategorylName=KPC.KeyPerformanceIndicatorCategoryName,
-                            KeyPerformanceIndicatorName=KP.KeyPerformanceIndicatorName,
-                            Description=KP.Description,
-                            Baseline= KP.Baseline,
-                            ComingThrough = KP.ComingThrough
+                            KeyPerformanceIndicatorName = KPI.KeyPerformanceIndicator,
+                            Description=KP.Description
+                           
                           }).ToListAsync();
             //assertContext.KeyPerformanceIndicators.Where(T=>T.MunicipalId==MunicipalId && T.IsActive==true).ToListAsync();
         }
@@ -44,10 +44,8 @@ namespace AssertsService.Repository.Services
             if (result != null)
             {
                 result.KeyPerformanceIndicatorCategoryId = keyPerformanceIndicator.KeyPerformanceIndicatorCategoryId;
-                result.KeyPerformanceIndicatorName = keyPerformanceIndicator.KeyPerformanceIndicatorName;
-                result.Description = keyPerformanceIndicator.Description;
-                result.Baseline = keyPerformanceIndicator.Baseline;
-                result.ComingThrough = keyPerformanceIndicator.ComingThrough;                         
+                result.KeyPerformanceIndicatorNameId = keyPerformanceIndicator.KeyPerformanceIndicatorNameId;
+                result.Description = keyPerformanceIndicator.Description;                                    
                 await assertContext.SaveChangesAsync();
                 return result;
             }
@@ -65,6 +63,10 @@ namespace AssertsService.Repository.Services
         public async Task<IEnumerable<KeyPerformanceIndicatorCategory>> GetKeyPerformanceIndicatorCategorys()
         {
             return await assertContext.KeyPerformanceIndicatorCategorys.ToListAsync();
+        }
+        public async Task<IEnumerable<KeyPerformanceIndicatorName>> GetKeyPerformanceIndicatorNames(int Id)
+        {
+            return await assertContext.KeyPerformanceIndicatorNames.Where(T=>T.KeyPerformanceIndicatorCategoryId == Id).ToListAsync();
         }
     }
 }

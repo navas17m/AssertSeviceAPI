@@ -41,6 +41,7 @@ namespace AssertsService.Repository.Services
                 result.BudgetDisparity = BudgetApproval.BudgetDisparity;
                 result.BudgetDisparityAction = BudgetApproval.BudgetDisparityAction;
                 result.BudgetDisparityDescription = BudgetApproval.BudgetDisparityDescription;
+                result.UploadId = BudgetApproval.UploadId;
                 await assertContext.SaveChangesAsync();
                 return result;
             }

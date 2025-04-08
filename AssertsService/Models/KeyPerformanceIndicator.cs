@@ -7,10 +7,8 @@
         public int SubMunicipalId { get; set; }
         public int UserId { get; set; }
         public int KeyPerformanceIndicatorCategoryId { get; set; }
-        public string KeyPerformanceIndicatorName { get; set; }
-        public string? Description { get; set; }
-        public string? Baseline { get; set; }      
-        public string? ComingThrough { get; set; }       
+        public int KeyPerformanceIndicatorNameId { get; set; }
+        public string? Description { get; set; }           
         public bool IsActive { get; set; }
     }
 }

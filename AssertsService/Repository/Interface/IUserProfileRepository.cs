@@ -8,6 +8,7 @@ namespace AssertsService.Repository.Interface
         Task<IEnumerable<UserDetailsDTO>> GetUserDetails();
         Task<UserDetails> GetUserDetail(int userId);
         Task<UserDetails> AddUserDetails(UserDetails userDetails);
-       
+        Task<UserDetails> UpdateUserDetails(UserDetails UserDetails);
+        void DeleteUserDetails(int UserDetailsId);
     }
 }

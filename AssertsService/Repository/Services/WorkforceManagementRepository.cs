@@ -32,7 +32,7 @@ namespace AssertsService.Repository.Services
             var result = await assertContext.WorkforceManagements.FirstOrDefaultAsync(T => T.WorkforceManagementId == WorkforceManagement.WorkforceManagementId);
             if (result != null)
             {
-                result.Activity = WorkforceManagement.Activity;
+                result.WorkforceManagementActivityId = WorkforceManagement.WorkforceManagementActivityId;
                 result.BriefDescription = WorkforceManagement.BriefDescription;
                 result.CitingReasons = WorkforceManagement.CitingReasons;
                 result.Description = WorkforceManagement.Description;
@@ -50,6 +50,10 @@ namespace AssertsService.Repository.Services
                 result.IsActive = false;                
                 assertContext.SaveChanges();
             }
+        }
+        public async Task<IEnumerable<WorkforceManagementActivity>> GetWorkforceManagementActivities()
+        {
+            return await assertContext.WorkforceManagementActivities.ToListAsync();
         }
     }
 }

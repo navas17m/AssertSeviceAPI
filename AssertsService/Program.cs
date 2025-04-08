@@ -20,6 +20,8 @@ builder.Services.AddScoped<IQualityPlanandContinuousImprovementRepository, Quali
 builder.Services.AddScoped<IMaintenanceActivityRepository, MaintenanceActivityRepository>();
 builder.Services.AddScoped<IUploadRepository, UploadRepository>();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IUploadDocumentRepository, UploadDocumentRepository>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 
 builder.Services.AddCors(options =>
 {

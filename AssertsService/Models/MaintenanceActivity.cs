@@ -26,6 +26,12 @@ namespace AssertsService.Models
         public  bool Approvals { get; set; }
         public int WorkorderstatusId { get; set; }       
         public string? Postmaintenance  { get; set; }
+        public string? Actualtimetakenformaintenance { get; set; }
+        public decimal MaintenanceCost { get; set; }
+        public decimal HRCost { get; set; }
+        public decimal HRMaterialCost { get; set; }
+        public decimal OtherCost { get; set; }
+        public int PercentageCompleted { get; set; }
         public bool IsActive { get; set; }
 
     }

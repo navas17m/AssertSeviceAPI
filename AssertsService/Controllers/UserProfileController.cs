@@ -63,23 +63,42 @@ namespace AssertsService.Controllers
             }
         }
 
-      
-        //[HttpPut]
-        //public async Task<ActionResult<BudgetApproval>> UpdateBudgetApproval(BudgetApproval BudgetApproval)
-        //{
-        //    try
-        //    {
-        //        var assertReg = await BudgetApprovalRepository.GetBudgetApproval(BudgetApproval.BudgetApprovalId);
-        //        if (assertReg == null) return NotFound();
 
-        //        return await BudgetApprovalRepository.UpdateBudgetApproval(BudgetApproval);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error updating asserts");
-        //    }
-        //}
+        [HttpPut]
+        public async Task<ActionResult<UserDetails>> UpdateUserDetails(UserDetails UserDetails)
+        {
+            try
+            {
+                var assertReg = await UserProfileRepository.GetUserDetail(UserDetails.UserDetailsId);
+                if (assertReg == null) return NotFound();
 
-       
+                return await UserProfileRepository.UpdateUserDetails(UserDetails);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating asserts");
+            }
+        }
+
+        // DELETE api/<AssertRegisterController>/5
+        [HttpDelete("{id:int}")]
+        public bool DeleteUserDetails(int id)
+        {
+            try
+            {
+                //var assertReg =  assertRegisterRepository.GetAssertRegister(id);
+                //if (assertReg == null)  NotFound();
+
+                UserProfileRepository.DeleteUserDetails(id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                //StatusCode(StatusCodes.Status500InternalServerError, "Error deleting asserts");
+            }
+        }
+
+
     }
 }

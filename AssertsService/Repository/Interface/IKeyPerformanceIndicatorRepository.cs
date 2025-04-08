@@ -11,5 +11,7 @@ namespace AssertsService.Repository.Interface
         Task<KeyPerformanceIndicator> UpdateKeyPerformanceIndicator(KeyPerformanceIndicator KeyPerformanceIndicator);
         void DeleteKeyPerformanceIndicator(int KeyPerformanceIndicatorId);
         Task<IEnumerable<KeyPerformanceIndicatorCategory>> GetKeyPerformanceIndicatorCategorys();
+        Task<IEnumerable<KeyPerformanceIndicatorName>> GetKeyPerformanceIndicatorNames(int Id);
+
     }
 }

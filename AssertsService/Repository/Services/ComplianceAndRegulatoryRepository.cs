@@ -32,7 +32,7 @@ namespace AssertsService.Repository.Services
             var result = await assertContext.ComplianceAndRegulatorys.FirstOrDefaultAsync(T => T.ComplianceAndRegulatoryId == ComplianceAndRegulatory.ComplianceAndRegulatoryId);
             if (result != null)
             {
-                result.Activity = ComplianceAndRegulatory.Activity;
+                result.ComplianceAndRegulatoryActivityId = ComplianceAndRegulatory.ComplianceAndRegulatoryActivityId;
                 result.BriefDescription = ComplianceAndRegulatory.BriefDescription;
                 result.CitingReasons = ComplianceAndRegulatory.CitingReasons;
                 result.Description = ComplianceAndRegulatory.Description;
@@ -50,6 +50,10 @@ namespace AssertsService.Repository.Services
                 result.IsActive = false;                
                 assertContext.SaveChanges();
             }
+        }
+        public async Task<IEnumerable<ComplianceAndRegulatoryActivity>> GetComplianceAndRegulatoryActivities()
+        {
+            return await assertContext.ComplianceAndRegulatoryActivitys.ToListAsync();
         }
     }
 }

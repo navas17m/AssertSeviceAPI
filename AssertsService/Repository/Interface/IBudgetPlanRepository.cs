@@ -5,10 +5,13 @@ namespace AssertsService.Repository.Interface
 {
     public interface IBudgetPlanRepository
     {
-        Task<IEnumerable<BudgetPlan>> GetBudgetPlans(int MunicipalId);
+        Task<IEnumerable<BudgetPlanDTO>> GetBudgetPlans(int MunicipalId);
         Task<BudgetPlan> GetBudgetPlan(int budgetPlanId);
         Task<BudgetPlan> AddBudgetPlan(BudgetPlan budgetPlan);
         Task<BudgetPlan> UpdateBudgetPlan(BudgetPlan budgetPlan);
         void DeleteBudgetPlan(int budgetPlanId);
+
+        Task<IEnumerable<MaintenanceManagementStyle>> GetMaintenanceManagementStyles();
+        Task<IEnumerable<MaintenanceStrategy>> GetMaintenanceStrategies();
     }
 }

@@ -65,6 +65,9 @@ namespace AssertsService.Migrations
                     b.Property<int>("CoordinatesY")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("DateOfInspection")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("DateOfLastInspection")
                         .HasColumnType("datetime2");
 
@@ -115,6 +118,12 @@ namespace AssertsService.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("SubMunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UploadEvidenseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UploadEvidenseId1")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -189,6 +198,9 @@ namespace AssertsService.Migrations
                     b.Property<int>("SubMunicipalId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UploadId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -223,11 +235,11 @@ namespace AssertsService.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MaintenanceManagementStyle")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MaintenanceManagementStyleId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("MaintenanceStrategy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MaintenanceStrategyId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("MaterialCosts")
                         .HasColumnType("decimal(18,2)");
@@ -242,6 +254,12 @@ namespace AssertsService.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("SubMunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalEstimatedCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UploadId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -260,15 +278,14 @@ namespace AssertsService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComplianceAndRegulatoryId"));
 
-                    b.Property<string>("Activity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("BriefDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CitingReasons")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ComplianceAndRegulatoryActivityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -293,6 +310,23 @@ namespace AssertsService.Migrations
                     b.ToTable("ComplianceAndRegulatorys");
                 });
 
+            modelBuilder.Entity("AssertsService.Models.ComplianceAndRegulatoryActivity", b =>
+                {
+                    b.Property<int>("ComplianceAndRegulatoryActivityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComplianceAndRegulatoryActivityId"));
+
+                    b.Property<string>("ComplianceAndRegulatoryActivityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ComplianceAndRegulatoryActivityId");
+
+                    b.ToTable("ComplianceAndRegulatoryActivitys");
+                });
+
             modelBuilder.Entity("AssertsService.Models.KeyPerformanceIndicator", b =>
                 {
                     b.Property<int>("KeyPerformanceIndicatorId")
@@ -300,12 +334,6 @@ namespace AssertsService.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KeyPerformanceIndicatorId"));
-
-                    b.Property<string>("Baseline")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ComingThrough")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -316,9 +344,8 @@ namespace AssertsService.Migrations
                     b.Property<int>("KeyPerformanceIndicatorCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("KeyPerformanceIndicatorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("KeyPerformanceIndicatorNameId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MunicipalId")
                         .HasColumnType("int");
@@ -351,6 +378,26 @@ namespace AssertsService.Migrations
                     b.ToTable("KeyPerformanceIndicatorCategorys");
                 });
 
+            modelBuilder.Entity("AssertsService.Models.KeyPerformanceIndicatorName", b =>
+                {
+                    b.Property<int>("KeyPerformanceIndicatorNameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KeyPerformanceIndicatorNameId"));
+
+                    b.Property<string>("KeyPerformanceIndicator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KeyPerformanceIndicatorCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("KeyPerformanceIndicatorNameId");
+
+                    b.ToTable("KeyPerformanceIndicatorNames");
+                });
+
             modelBuilder.Entity("AssertsService.Models.LastMaintenanceStrategy", b =>
                 {
                     b.Property<int>("LastMaintenanceStrategyId")
@@ -376,6 +423,9 @@ namespace AssertsService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaintenanceActivityId"));
 
+                    b.Property<string>("Actualtimetakenformaintenance")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Approvals")
                         .HasColumnType("bit");
 
@@ -388,8 +438,17 @@ namespace AssertsService.Migrations
                     b.Property<string>("Estimatinglaborcosts")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("HRCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("HRMaterialCost")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<decimal>("MaintenanceCost")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("Maintenancecompletiondate")
                         .HasColumnType("datetime2");
@@ -405,6 +464,12 @@ namespace AssertsService.Migrations
 
                     b.Property<DateTime?>("Nextmaintenancedate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal>("OtherCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("PercentageCompleted")
+                        .HasColumnType("int");
 
                     b.Property<int>("PeriodicmaintenanceId")
                         .HasColumnType("int");
@@ -439,6 +504,40 @@ namespace AssertsService.Migrations
                     b.HasKey("MaintenanceActivityId");
 
                     b.ToTable("MaintenanceActivitys");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.MaintenanceManagementStyle", b =>
+                {
+                    b.Property<int>("MaintenanceManagementStyleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaintenanceManagementStyleId"));
+
+                    b.Property<string>("MaintenanceManagementStyleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaintenanceManagementStyleId");
+
+                    b.ToTable("MaintenanceManagementStyles");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.MaintenanceStrategy", b =>
+                {
+                    b.Property<int>("MaintenanceStrategyId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaintenanceStrategyId"));
+
+                    b.Property<string>("MaintenanceStrategyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaintenanceStrategyId");
+
+                    b.ToTable("MaintenanceStrategies");
                 });
 
             modelBuilder.Entity("AssertsService.Models.Municipal", b =>
@@ -689,6 +788,40 @@ namespace AssertsService.Migrations
                     b.ToTable("Uploads");
                 });
 
+            modelBuilder.Entity("AssertsService.Models.UploadDocument", b =>
+                {
+                    b.Property<int>("UploadDocumentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UploadDocumentId"));
+
+                    b.Property<string>("Defects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubMunicipalId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UploadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UploadDocumentId");
+
+                    b.ToTable("UploadDocuments");
+                });
+
             modelBuilder.Entity("AssertsService.Models.UserDetails", b =>
                 {
                     b.Property<int>("UserDetailsId")
@@ -764,10 +897,6 @@ namespace AssertsService.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkforceManagementId"));
 
-                    b.Property<string>("Activity")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("BriefDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -789,12 +918,32 @@ namespace AssertsService.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("WorkforceManagementActivityId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("YesOrNo")
                         .HasColumnType("bit");
 
                     b.HasKey("WorkforceManagementId");
 
                     b.ToTable("WorkforceManagements");
+                });
+
+            modelBuilder.Entity("AssertsService.Models.WorkforceManagementActivity", b =>
+                {
+                    b.Property<int>("WorkforceManagementActivityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkforceManagementActivityId"));
+
+                    b.Property<string>("WorkforceManagementActivityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("WorkforceManagementActivityId");
+
+                    b.ToTable("WorkforceManagementActivities");
                 });
 #pragma warning restore 612, 618
         }

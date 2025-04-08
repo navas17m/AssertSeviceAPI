@@ -98,5 +98,18 @@ namespace AssertsService.Controllers
                 //StatusCode(StatusCodes.Status500InternalServerError, "Error deleting asserts");
             }
         }
+        [HttpGet]
+        public async Task<ActionResult> GetComplianceAndRegulatoryActivities()
+        {
+
+            try
+            {
+                return Ok(await ComplianceAndRegulatoryRepository.GetComplianceAndRegulatoryActivities());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from database");
+            }
+        }
     }
 }

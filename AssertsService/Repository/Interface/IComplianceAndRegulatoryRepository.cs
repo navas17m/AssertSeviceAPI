@@ -10,5 +10,6 @@ namespace AssertsService.Repository.Interface
         Task<ComplianceAndRegulatory> AddComplianceAndRegulatory(ComplianceAndRegulatory ComplianceAndRegulatory);
         Task<ComplianceAndRegulatory> UpdateComplianceAndRegulatory(ComplianceAndRegulatory ComplianceAndRegulatory);
         void DeleteComplianceAndRegulatory(int ComplianceAndRegulatoryId);
+        Task<IEnumerable<ComplianceAndRegulatoryActivity>> GetComplianceAndRegulatoryActivities();
     }
 }

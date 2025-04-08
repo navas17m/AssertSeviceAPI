@@ -34,5 +34,13 @@ namespace AssertsService.Data
         public DbSet<SubAssert> SubAsserts { get; set; }
         public DbSet<SubMunicipal> SubMunicipals { get; set; }
 
+        public DbSet<ComplianceAndRegulatoryActivity> ComplianceAndRegulatoryActivitys { get; set; }
+        public DbSet<KeyPerformanceIndicatorName> KeyPerformanceIndicatorNames { get; set; }
+        public DbSet<MaintenanceManagementStyle> MaintenanceManagementStyles { get; set; }
+        public DbSet<MaintenanceStrategy> MaintenanceStrategies { get; set; }
+
+        public DbSet<WorkforceManagementActivity> WorkforceManagementActivities { get; set; }
+        public DbSet<UploadDocument> UploadDocuments { get; set; }
+
     }
 }

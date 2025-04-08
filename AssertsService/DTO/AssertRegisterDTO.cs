@@ -5,11 +5,13 @@
         public int AssertRegisterId { get; set; }
         public int MunicipalId { get; set; }       
         public string IdentificationNumber { get; set; }
+        public string AssertName { get; set; }
+        public string SubAssertName { get; set; }
         public string LocationOfOrigin { get; set; }
         public int CoordinatesX { get; set; }
         public int CoordinatesY { get; set; }
         public string GoogleMapsLink { get; set; }
-        public DateTime DateOfPurchase { get; set; }
+        public DateTime? DateOfPurchase { get; set; }
         public string DepartmentName { get; set; }
         public DateTime DateOfLastInspection { get; set; }
         public bool AccidentLog { get; set; }

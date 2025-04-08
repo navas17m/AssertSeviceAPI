@@ -8,5 +8,6 @@
         public string Municipal { get; set; }
         public string SubMunicipal { get; set; }
         public int MunicipalId { get; set; }
+        public int SubMunicipalId { get; set; }
     }
 }
